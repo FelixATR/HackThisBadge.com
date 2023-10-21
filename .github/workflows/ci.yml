@@ -18,6 +18,8 @@ jobs:
       run: |
         docker-compose build
         docker-compose up build-site
+        pwd
+        ls -la
 
 
     - name: Deploy
