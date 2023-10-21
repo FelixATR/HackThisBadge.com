@@ -2,8 +2,8 @@ version: "3.5"
 
 
 services:
-  build:
-    build-site: 
+  build-site:
+    build: 
       context: ./
     command: bundle exec jekyll build
     volumes:
