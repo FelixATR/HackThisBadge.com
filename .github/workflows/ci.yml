@@ -16,6 +16,7 @@ jobs:
     - name: Build and run Docker Compose
       run: |
         docker-compose build
+        docker-compose up build-site
 
     - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v4
