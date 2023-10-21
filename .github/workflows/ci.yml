@@ -16,7 +16,7 @@ jobs:
       matrix:
         jekyll-version: [3.9, 4.3]
         os: [ ubuntu-latest, macos-latest, windows-latest ]
-        ruby-version: ["3.0", "3.1", "3.2"]
+        ruby-version: ["3.1", "3.2"]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
@@ -25,6 +25,8 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: false
+    - name:  Add the current platform to the lockfile
+      run: bundle lock --add-platform x86_64-linux
     - name: Bundle Install (Jekyll ${{ matrix.jekyll-version }})
       run: bundle install
       env:
