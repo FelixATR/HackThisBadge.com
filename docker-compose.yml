@@ -1,7 +1,14 @@
 version: "3.5"
 
+
 services:
-  jekyll:
+  build:
+    build: 
+      context: ./
+    command: bundle exec jekyll build
+    volumes:
+      - .:/usr/src/app
+  serve:
     build:
       context: ./
     ports:
@@ -12,3 +19,7 @@ services:
     tty: true
     command: bundle exec jekyll serve -H 0.0.0.0 -t
 
+
+
+# When you specify a command for a service in the Docker Compose file, it overrides the CMD instruction in the Dockerfile. So in your case, the command specified in the serve service will be used instead of the CMD instruction in the Dockerfile when you run the container.
+# However, it's still a good idea to include the CMD instruction in the Dockerfile as a fallback in case the command is not specified in the Docker Compose file.
