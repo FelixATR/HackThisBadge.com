@@ -8,7 +8,8 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -18,9 +19,11 @@ jobs:
         docker-compose build
         docker-compose up build-site
 
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: _site
+        cname: www.hackthisbadge.com
