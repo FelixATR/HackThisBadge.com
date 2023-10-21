@@ -14,20 +14,25 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+# NOTE: This is just having more issues.
+# We will do a `docker-compose up build-site` and push it up instead. 
+# this will just copy the _site to gh-pages
 
-    - name: Update jekyll-anchor-headings
-      id: update
-      uses: suisei-cn/actions-download-file@v1.3.0
-      with:
-        url: "https://github.com/allejo/jekyll-anchor-headings/releases/download/${{ steps.latest-release.outputs.release }}/anchor_headings.html"
-        target: _includes/vendor/
+# Docker + jekyll + gh-pages = pain
+
+    # - name: Update jekyll-anchor-headings
+    #   id: update
+    #   uses: suisei-cn/actions-download-file@v1.3.0
+    #   with:
+    #     url: "https://github.com/allejo/jekyll-anchor-headings/releases/download/${{ steps.latest-release.outputs.release }}/anchor_headings.html"
+    #     target: _includes/vendor/
         
-    - name: Build and run Docker Compose (jekyll build)
-      run: |
-        docker-compose build
-        docker-compose up build-site
-        pwd
-        ls -la
+    # - name: Build and run Docker Compose (jekyll build)
+    #   run: |
+    #     docker-compose build
+    #     docker-compose up build-site
+    #     pwd
+    #     ls -la
 
 
     - name: Deploy
